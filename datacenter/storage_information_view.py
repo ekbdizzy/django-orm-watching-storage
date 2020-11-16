@@ -6,13 +6,6 @@ from django.utils.timezone import localtime
 from datetime import timedelta, datetime
 
 
-def get_duration(visit: Visit) -> int:
-    """Get duration of visit in seconds from vizit.entered_at to timezone.now()."""
-    entered = visit.entered_at
-    delta = timezone.now() - entered
-    return delta.total_seconds()
-
-
 def format_duration(duration: int) -> str:
     hours, minutes_and_seconds = divmod(duration, 3600)
     minutes, seconds = divmod(minutes_and_seconds, 60)
@@ -26,7 +19,7 @@ def storage_information_view(request):
             {
                 "who_entered": visit.passcard.owner_name,
                 "entered_at": visit.entered_at,
-                "duration": format_duration(get_duration(visit))
+                "duration": format_duration(visit.get_duration())
             }
         )
 
