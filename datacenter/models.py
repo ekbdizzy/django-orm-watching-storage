@@ -17,10 +17,16 @@ class Passcard(models.Model):
 class Visit(models.Model):
 
     def get_duration(self) -> int:
-        """Get duration of visit in seconds from self.entered_at to timezone.now()."""
-        entered = self.entered_at
-        delta = timezone.now() - entered
-        return delta.total_seconds()
+        if self.leaved_at:
+            delta = self.leaved_at - self.entered_at
+        else:
+            delta = timezone.now() - self.entered_at
+        return int(delta.total_seconds())
+
+    def is_visit_long(self, minutes=60):
+        if self.get_duration() > minutes * 60:
+            return True
+        return False
 
     created_at = models.DateTimeField(auto_now=True)
     passcard = models.ForeignKey(Passcard)
