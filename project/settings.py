@@ -14,6 +14,7 @@ DATABASES = {
 INSTALLED_APPS = ['datacenter']
 
 SECRET_KEY = 'REPLACE_ME'
+SUCPICIOUS_TIME_LIMIT = 60  # how much minutes user is in datacenter
 
 DEBUG = True
 

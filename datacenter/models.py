@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 
 
 class Passcard(models.Model):
@@ -23,7 +24,7 @@ class Visit(models.Model):
             delta = timezone.now() - self.entered_at
         return int(delta.total_seconds())
 
-    def is_visit_long(self, minutes=60):
+    def is_visit_long(self, minutes=settings.SUCPICIOUS_TIME_LIMIT):
         if self.get_duration() > minutes * 60:
             return True
         return False
