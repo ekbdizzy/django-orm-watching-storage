@@ -17,15 +17,13 @@ DATABASES = {
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'DEFAULT_SECRET_KEY')
 SUCPICIOUS_TIME_LIMIT = 60  # how much minutes user is in datacenter
 
+SECRET_KEY = os.environ.get('SECRET_KEY', 'DEFAULT_SECRET_KEY')
 DEBUG = env.bool('DEBUG')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 ROOT_URLCONF = "project.urls"
-
-ALLOWED_HOSTS = ['*']
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES = [
     {
@@ -36,9 +34,6 @@ TEMPLATES = [
 ]
 
 USE_L10N = True
-
 LANGUAGE_CODE = 'ru-ru'
-
 TIME_ZONE = 'Europe/Moscow'
-
 USE_TZ = True
