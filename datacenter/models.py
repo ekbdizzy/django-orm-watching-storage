@@ -25,9 +25,7 @@ class Visit(models.Model):
         return int(delta.total_seconds())
 
     def is_visit_long(self, minutes=settings.SUCPICIOUS_TIME_LIMIT):
-        if self.get_duration() > minutes * 60:
-            return True
-        return False
+        return self.get_duration() > minutes * 60
 
     created_at = models.DateTimeField(auto_now=True)
     passcard = models.ForeignKey(Passcard)
