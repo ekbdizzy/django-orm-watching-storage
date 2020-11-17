@@ -1,22 +1,26 @@
 import os
+from environs import Env
+
+env = Env()
+env.read_env('.env')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'checkpoint.devman.org',
-        'PORT': '5434',
-        'NAME': 'checkpoint',
-        'USER': 'guard',
-        'PASSWORD': 'osim5',
+        'HOST': os.environ.get('HOST_DB'),
+        'PORT': os.environ.get('PORT_DB'),
+        'NAME': os.environ.get('NAME_DB'),
+        'USER': os.environ.get('USER_DB'),
+        'PASSWORD': os.environ.get('PASSWORD_DB'),
     }
 }
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = 'REPLACE_ME'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'DEFAULT_SECRET_KEY')
 SUCPICIOUS_TIME_LIMIT = 60  # how much minutes user is in datacenter
 
-DEBUG = True
+DEBUG = env.bool('DEBUG')
 
 ROOT_URLCONF = "project.urls"
 
