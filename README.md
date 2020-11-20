@@ -1,4 +1,4 @@
-## Dajngo ORM Watching Storage
+## Django ORM Watching Storage
 Simple web application on Django, forked from [django-orm-watching-storage](https://github.com/dvmn-tasks/django-orm-watching-storage).
 This app could be used with outside database with visits and access cards of your workers.
 
